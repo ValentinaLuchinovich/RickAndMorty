@@ -15,7 +15,7 @@ class TableViewController: UITableViewController {
     lazy var footerView = FooterView()
     var urlRickMorty = "https://rickandmortyapi.com/api/character?page="
     let cellID = "cell"
-    var result: [Character] = []
+    var results: [Character] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,7 @@ class TableViewController: UITableViewController {
         tableView.rowHeight = 80
         
         reloadCharacters()
+        
     }
     
     func reloadCharacters() {
@@ -32,7 +33,7 @@ class TableViewController: UITableViewController {
             guard let charactersResponse = charactersResponse else { return }
             self.footerView.showLoader()
             self.charactersResponse = charactersResponse
-            self.result.append(contentsOf: charactersResponse.results)
+            self.results.append(contentsOf: charactersResponse.results)
             self.tableView.reloadData()
         }
     }
@@ -52,18 +53,32 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return result.count
+        return results.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
         
-        let character = result[indexPath.row]
+        let character = results[indexPath.row]
         cell.nameLabel.text = character.name
         cell.genderLabel.text = character.gender
         cell.speciesLabel.text = character.species
         cell.photoImage.kf.setImage(with: URL(string: character.image))
+//        performSegue(withIdentifier: "detailVC", sender: self)
         return cell
         }
+    
+    // MARK: - Table view delegate
      
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let result = results[indexPath.row]
+        performSegue(withIdentifier: "detailVC", sender: result)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        guard segue.identifier == "detailVC", let result = sender as? Character, let vc =   segue.destination as? DetailViewController else { return }
+       vc.result = result
+    }
+    
 }

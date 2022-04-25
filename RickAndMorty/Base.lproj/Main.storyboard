@@ -34,8 +34,8 @@
                                             <rect key="frame" x="95" y="7" width="309" height="66.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOX-zA-NfR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="47.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -68,7 +68,7 @@
                                     <outlet property="nameLabel" destination="fOX-zA-NfR" id="zZf-DH-PNE"/>
                                     <outlet property="photoImage" destination="pXb-cU-luh" id="0nM-Jr-c6i"/>
                                     <outlet property="speciesLabel" destination="MhP-48-IS5" id="Kkc-h8-OKy"/>
-                                    <segue destination="bHg-6o-Ad6" kind="show" id="YwL-Xr-22Y"/>
+                                    <segue destination="bHg-6o-Ad6" kind="show" identifier="detailVC" trigger="accessoryAction" id="vab-oj-gN5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

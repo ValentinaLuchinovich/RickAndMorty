@@ -9,18 +9,24 @@ import Foundation
 
 struct RickAndMorty: Decodable {
     let results: [Character]
-    let info: Pages
+    let info: Info
 }
 
 struct Character: Decodable {
     let name: String
-    let image: String
+    var image: String
     let species: String
     let gender: String
     let status: String
+    let location: Location
+    let episode: [String]
 }
 
-struct Pages: Decodable {
+struct Info: Decodable {
     let pages: Int
     let next: String?
+}
+
+struct Location: Decodable {
+    let name: String
 }

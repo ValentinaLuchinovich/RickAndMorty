@@ -14,10 +14,18 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     
+//    let cell = TableViewCell()
+//
+//    var charactersResponse: RickAndMorty?
+//
+//    weak var delegate: TableViewController!
     
-    let cell = UITableViewCell()
+    var result: Character?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        photoImage.kf.setImage(with: URL(string: result?.image ?? ""))
+        
     }
 }
