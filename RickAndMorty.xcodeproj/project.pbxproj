@@ -9,21 +9,34 @@
 /* Begin PBXBuildFile section */
 		6E68F9D628169FD300070CC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9D528169FD300070CC3 /* AppDelegate.swift */; };
 		6E68F9D828169FD300070CC3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9D728169FD300070CC3 /* SceneDelegate.swift */; };
-		6E68F9DA28169FD300070CC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9D928169FD300070CC3 /* ViewController.swift */; };
+		6E68F9DA28169FD300070CC3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9D928169FD300070CC3 /* TableViewController.swift */; };
 		6E68F9DD28169FD300070CC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E68F9DB28169FD300070CC3 /* Main.storyboard */; };
 		6E68F9DF28169FD400070CC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E68F9DE28169FD400070CC3 /* Assets.xcassets */; };
 		6E68F9E228169FD400070CC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E68F9E028169FD400070CC3 /* LaunchScreen.storyboard */; };
+		6E68F9EE2816A06200070CC3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9ED2816A06200070CC3 /* NetworkService.swift */; };
+		6E68F9F02816A07700070CC3 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9EF2816A07700070CC3 /* NetworkDataFetcher.swift */; };
+		6E68F9F32816A12700070CC3 /* RickAndMorty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9F22816A12700070CC3 /* RickAndMorty.swift */; };
+		6E68F9FD2816BFD800070CC3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9FC2816BFD800070CC3 /* TableViewCell.swift */; };
+		6E68F9FF2816C19E00070CC3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68F9FE2816C19E00070CC3 /* DetailViewController.swift */; };
+		6E68FA012816C77700070CC3 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E68FA002816C77700070CC3 /* FooterView.swift */; };
+		6E68FA042817105400070CC3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6E68FA032817105400070CC3 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6E68F9D228169FD300070CC3 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E68F9D528169FD300070CC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E68F9D728169FD300070CC3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6E68F9D928169FD300070CC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6E68F9D928169FD300070CC3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		6E68F9DC28169FD300070CC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E68F9DE28169FD400070CC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E68F9E128169FD400070CC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E68F9E328169FD400070CC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E68F9ED2816A06200070CC3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		6E68F9EF2816A07700070CC3 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
+		6E68F9F22816A12700070CC3 /* RickAndMorty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMorty.swift; sourceTree = "<group>"; };
+		6E68F9FC2816BFD800070CC3 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		6E68F9FE2816C19E00070CC3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6E68FA002816C77700070CC3 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E68FA042817105400070CC3 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +72,51 @@
 			children = (
 				6E68F9D528169FD300070CC3 /* AppDelegate.swift */,
 				6E68F9D728169FD300070CC3 /* SceneDelegate.swift */,
-				6E68F9D928169FD300070CC3 /* ViewController.swift */,
 				6E68F9DB28169FD300070CC3 /* Main.storyboard */,
+				6E68FA002816C77700070CC3 /* FooterView.swift */,
+				6E68F9FA2816BFA700070CC3 /* Controllers */,
+				6E68F9EC2816A04900070CC3 /* Networking */,
+				6E68F9F12816A0B800070CC3 /* Model */,
 				6E68F9DE28169FD400070CC3 /* Assets.xcassets */,
 				6E68F9E028169FD400070CC3 /* LaunchScreen.storyboard */,
 				6E68F9E328169FD400070CC3 /* Info.plist */,
 			);
 			path = RickAndMorty;
+			sourceTree = "<group>";
+		};
+		6E68F9EC2816A04900070CC3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				6E68F9ED2816A06200070CC3 /* NetworkService.swift */,
+				6E68F9EF2816A07700070CC3 /* NetworkDataFetcher.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6E68F9F12816A0B800070CC3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E68F9F22816A12700070CC3 /* RickAndMorty.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6E68F9FA2816BFA700070CC3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E68F9FB2816BFB700070CC3 /* Cell */,
+				6E68F9D928169FD300070CC3 /* TableViewController.swift */,
+				6E68F9FE2816C19E00070CC3 /* DetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6E68F9FB2816BFB700070CC3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6E68F9FC2816BFD800070CC3 /* TableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +135,9 @@
 			dependencies = (
 			);
 			name = RickAndMorty;
+			packageProductDependencies = (
+				6E68FA032817105400070CC3 /* Kingfisher */,
+			);
 			productName = RickAndMorty;
 			productReference = 6E68F9D228169FD300070CC3 /* RickAndMorty.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +166,9 @@
 				Base,
 			);
 			mainGroup = 6E68F9C928169FD200070CC3;
+			packageReferences = (
+				6E68FA022817105400070CC3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 6E68F9D328169FD300070CC3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +196,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E68F9DA28169FD300070CC3 /* ViewController.swift in Sources */,
+				6E68F9F32816A12700070CC3 /* RickAndMorty.swift in Sources */,
+				6E68F9DA28169FD300070CC3 /* TableViewController.swift in Sources */,
 				6E68F9D628169FD300070CC3 /* AppDelegate.swift in Sources */,
+				6E68FA012816C77700070CC3 /* FooterView.swift in Sources */,
+				6E68F9EE2816A06200070CC3 /* NetworkService.swift in Sources */,
 				6E68F9D828169FD300070CC3 /* SceneDelegate.swift in Sources */,
+				6E68F9FD2816BFD800070CC3 /* TableViewCell.swift in Sources */,
+				6E68F9F02816A07700070CC3 /* NetworkDataFetcher.swift in Sources */,
+				6E68F9FF2816C19E00070CC3 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +424,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6E68FA022817105400070CC3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E68FA032817105400070CC3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E68FA022817105400070CC3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E68F9CA28169FD200070CC3 /* Project object */;
 }
