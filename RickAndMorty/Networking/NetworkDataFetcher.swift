@@ -11,7 +11,6 @@ import UIKit
 class NetworkDataFetcher {
     
     let networkService = NetworkService()
-//    let alertController = AlertController()
     
     func fetchTracks(viewController: UIViewController, urlString: String, response: @escaping (RickAndMorty?) -> Void) {
         networkService.request(urlString: urlString) { (result) in
@@ -22,7 +21,6 @@ class NetworkDataFetcher {
                     response(massage)
                 } catch let jsonError{
                     print("Faield to decode JSON", jsonError)
-//                    self.alertController.showAlert(viewController: viewController)
                 }
             case .failure(let error):
                 print("Error received requesting data: \(error.localizedDescription)")
