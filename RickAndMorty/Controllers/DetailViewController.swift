@@ -30,6 +30,5 @@ class DetailViewController: UIViewController {
         locationLabel.text = result?.location.name
         episodeLabel.text = "Episodes: " + String(result?.episode.count ?? 0)
         
-        
     }
 }

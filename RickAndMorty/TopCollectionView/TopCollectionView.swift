@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TopCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var results: [Character] = []
+    var results = MainViewController.results
     
     // Создаем инициализатор, который будет содердать фрейм и макет CollectionView
     init() {
@@ -17,7 +18,7 @@ class TopCollectionView: UICollectionView, UICollectionViewDelegate, UICollectio
         // Выбираем горизонтальный скролл ячеек
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
-        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         delegate = self
         dataSource = self
         
@@ -33,8 +34,11 @@ class TopCollectionView: UICollectionView, UICollectionViewDelegate, UICollectio
         contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        results.count
+        
+        print(results.count)
+        return results.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -48,6 +52,7 @@ class TopCollectionView: UICollectionView, UICollectionViewDelegate, UICollectio
 //        cell.nameLabel.text = cells[indexPath.row].locationName
 //        // Добавляем в ячеку описание
 //        cell.descriptionOfTravel.text = cells[indexPath.row].description
+        cell.backgroundColor = .red
         return cell
     }
     
