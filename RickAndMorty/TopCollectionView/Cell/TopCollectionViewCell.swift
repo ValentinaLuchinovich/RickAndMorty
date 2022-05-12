@@ -8,15 +8,15 @@
 import UIKit
 
 class TopCollectionViewCell: UICollectionViewCell {
+
     
     static let reuseID = "TopCollectionViewCell"
 
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet var photoImageView: UIImageView! 
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-    }
-
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+////        self.inputViewController?.nibName
+//        
+//    }
 }

@@ -6,54 +6,46 @@
 //
 
 import UIKit
-import AVFoundation
+import Kingfisher
 
 class TopCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var results = MainViewController.results
+    static let collectionViewHigt = 150
     
-    // Создаем инициализатор, который будет содердать фрейм и макет CollectionView
+    var results: [Character] = []
+    
     init() {
         let layout = UICollectionViewFlowLayout()
-        // Выбираем горизонтальный скролл ячеек
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
-        backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
         delegate = self
         dataSource = self
         
-        // Регистрируем ячейку созданную в GallaryCollectionViewCell
-        register(TopCollectionViewCell.self, forCellWithReuseIdentifier: TopCollectionViewCell.reuseID)
-        
-        // При ручном изменении констрейтов данное свойство должно быть обозначено в false, иначе элементы отображаться не будут
+        self.register(UINib(nibName:"TopCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: TopCollectionViewCell.reuseID)
+
         translatesAutoresizingMaskIntoConstraints = false
         
-        // Задаем расстояние между ячеками
-        layout.minimumLineSpacing = 20
-        // Задаем констрейты для ячейки
-        contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        layout.minimumLineSpacing = Constans.galleryMinimumLineSpasing
+        contentInset = UIEdgeInsets(top: 10, left: Constans.leftDistanceToView, bottom: 10, right: Constans.leftDistanceToView)
     }
     
+    func set(result: [Character]) {
+        results.append(contentsOf: result)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        print(results.count)
         return results.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: TopCollectionViewCell.reuseID, for: indexPath) as! TopCollectionViewCell
-        
         let character = results[indexPath.row]
-        cell.photoImageView.kf.setImage(with: URL(string: character.image))
-        // Добавляем в ячейку изображение
-//        cell.mainimageView.image = cells[indexPath.row].mainImage
-//        // Добавляем в ячеку заголовок
-//        cell.nameLabel.text = cells[indexPath.row].locationName
-//        // Добавляем в ячеку описание
-//        cell.descriptionOfTravel.text = cells[indexPath.row].description
-        cell.backgroundColor = .red
+        cell.photoImageView?.kf.setImage(with: URL(string: character.image))
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: CGFloat(TopCollectionView.collectionViewHigt) - Constans.topDistanceToView - Constans.bottomDistanceToView, height: CGFloat(TopCollectionView.collectionViewHigt) - Constans.topDistanceToView - Constans.bottomDistanceToView)
     }
     
     required init?(coder: NSCoder) {

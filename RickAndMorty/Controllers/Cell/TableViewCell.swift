@@ -14,7 +14,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var speciesLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     
-    var downloadTask: URLSessionDownloadTask?
+//    var downloadTask: URLSessionDownloadTask?
     
     override func prepareForReuse() {
         super.prepareForReuse()
