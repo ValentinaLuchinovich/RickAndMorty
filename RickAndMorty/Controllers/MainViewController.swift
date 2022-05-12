@@ -11,15 +11,28 @@ import Kingfisher
 class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else {return false}
+        return text.isEmpty
+    }
+    // Возвращает true когда поисковый запрос активирован
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
+    private var filtredCharacters:[Character] = []
+    
     let networkDataFetcher = NetworkDataFetcher()
     var charactersResponse: RickAndMorty?
     lazy var footerView = FooterView()
     var results: [Character] = []
     private var galleryCollectionView = TopCollectionView()
     
-     var urlRickMorty = "https://rickandmortyapi.com/api/character?page="
+    var urlRickMorty = "https://rickandmortyapi.com/api/character?page="
     let cellID = "cell"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +42,14 @@ class MainViewController: UIViewController {
         tableView.tableFooterView = footerView
         tableView.rowHeight = 80
         reloadCharacters()
+        
+        // Настройка search controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        searchController.searchBar.setValue("Отменить", forKey: "cancelButtonText")
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     func constraintsOfViews() {
@@ -56,7 +77,7 @@ class MainViewController: UIViewController {
             self.footerView.showLoader()
             self.charactersResponse = charactersResponse
             self.results.append(contentsOf: charactersResponse.results)
-           
+            
             self.tableView.reloadData()
             self.galleryCollectionView.set(result: self.results)
             self.galleryCollectionView.reloadData()
@@ -70,7 +91,7 @@ class MainViewController: UIViewController {
         }
         reloadCharacters()
     }
-
+    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -78,13 +99,22 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return results.count
+        if isFiltering {
+            return filtredCharacters.count
+        } else {
+            return results.count
+        }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
-        let character = results[indexPath.row]
+        var character: Character
+        if isFiltering {
+            character = filtredCharacters[indexPath.row]
+        } else {
+            character = results[indexPath.row]
+        }
+        
         cell.nameLabel.text = character.name
         cell.genderLabel.text = character.gender
         cell.speciesLabel.text = character.species
@@ -92,19 +122,48 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         print("!!!: \(String(describing: cell.photoImage))")
         print("???: \(character.image)")
         return cell
-        }
+    }
     
     
     // MARK: - Table view delegate
-     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let result = results[indexPath.row]
+        let result: Character
+        if isFiltering {
+            result = filtredCharacters[indexPath.row]
+        } else {
+            result = results[indexPath.row]
+        }
         performSegue(withIdentifier: "detailVC", sender: result)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         guard segue.identifier == "detailVC", let result = sender as? Character, let vc =   segue.destination as? DetailViewController else { return }
-       vc.result = result
+        vc.result = result
     }
     
 }
+
+//MARK: Search
+
+// Работа с поиском
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text ?? "")
+    }
+    
+    // Фильтрация контента в соответствии с поисковым запросом
+    private func filterContentForSearchText(_ searchText: String) {
+        //        tableView.reloadData()
+        filtredCharacters = results.filter({ (character: Character) -> Bool  in
+            return character.name.lowercased().contains(searchText.lowercased())
+        })
+        //        // Заполнение массива поиска объектами из основного массива c использованием Realm
+        //        filtredPlaces = results.filter("name CONTAINS[c] %@ OR gender CONTAINS[c] %@", searchText, searchText)
+        //        filtredPlaces = results.filter{ $0.name.lowercased().contains(searchText.lowercased())
+        //        }
+        tableView.reloadData()
+    }
+}
+
+
