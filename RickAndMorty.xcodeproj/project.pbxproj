@@ -78,6 +78,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		6E5E1713282D593000846367 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6E68FA0628172A6100070CC3 /* Main.storyboard */,
+				6E68F9E028169FD400070CC3 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		6E68F9C928169FD200070CC3 = {
 			isa = PBXGroup;
 			children = (
@@ -99,14 +108,12 @@
 			children = (
 				6E68F9D528169FD300070CC3 /* AppDelegate.swift */,
 				6E68F9D728169FD300070CC3 /* SceneDelegate.swift */,
-				6E68FA0628172A6100070CC3 /* Main.storyboard */,
-				6E101148282AD07F0073025F /* TopCollectionView */,
+				6E5E1713282D593000846367 /* Storyboards */,
 				6E68F9FA2816BFA700070CC3 /* Controllers */,
 				6E68F9F12816A0B800070CC3 /* Model */,
 				6E68F9EC2816A04900070CC3 /* Networking */,
 				6E68FA0528171F1B00070CC3 /* Helpers */,
 				6E68F9DE28169FD400070CC3 /* Assets.xcassets */,
-				6E68F9E028169FD400070CC3 /* LaunchScreen.storyboard */,
 				6E68F9E328169FD400070CC3 /* Info.plist */,
 			);
 			path = RickAndMorty;
@@ -132,9 +139,9 @@
 		6E68F9FA2816BFA700070CC3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6E68F9FB2816BFB700070CC3 /* Cell */,
 				6E68F9D928169FD300070CC3 /* MainViewController.swift */,
 				6E68F9FE2816C19E00070CC3 /* DetailViewController.swift */,
+				6E68F9FB2816BFB700070CC3 /* Cell */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -151,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				6E68FA002816C77700070CC3 /* FooterView.swift */,
+				6E101148282AD07F0073025F /* TopCollectionView */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

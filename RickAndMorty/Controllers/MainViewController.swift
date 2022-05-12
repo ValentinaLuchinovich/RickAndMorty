@@ -10,49 +10,42 @@ import Kingfisher
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    private let searchController = UISearchController(searchResultsController: nil)
-    private var searchBarIsEmpty: Bool {
-        guard let text = searchController.searchBar.text else {return false}
-        return text.isEmpty
-    }
-    // Возвращает true когда поисковый запрос активирован
-    private var isFiltering: Bool {
-        return searchController.isActive && !searchBarIsEmpty
-    }
-    
     private var filtredCharacters:[Character] = []
+    var results: [Character] = []
     
     let networkDataFetcher = NetworkDataFetcher()
     var charactersResponse: RickAndMorty?
     lazy var footerView = FooterView()
-    var results: [Character] = []
     private var galleryCollectionView = TopCollectionView()
     
     var urlRickMorty = "https://rickandmortyapi.com/api/character?page="
     let cellID = "cell"
     
+    // searchController
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else {return false}
+        return text.isEmpty
+    }
+    // Отслеживает строку поиска
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+   
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(galleryCollectionView)
-        constraintsOfViews()
+        setupOfViews()
         
         tableView.tableFooterView = footerView
         tableView.rowHeight = 80
         reloadCharacters()
-        
-        // Настройка search controller
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск"
-        searchController.searchBar.setValue("Отменить", forKey: "cancelButtonText")
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
     }
     
-    func constraintsOfViews() {
+    func setupOfViews() {
         
         // TableView
         
@@ -69,6 +62,14 @@ class MainViewController: UIViewController {
         galleryCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         galleryCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         galleryCollectionView.heightAnchor.constraint(equalToConstant: CGFloat(TopCollectionView.collectionViewHigt)).isActive = true
+        
+        // Search controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        searchController.searchBar.setValue("Отменить", forKey: "cancelButtonText")
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     func reloadCharacters() {
@@ -119,8 +120,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.genderLabel.text = character.gender
         cell.speciesLabel.text = character.species
         cell.photoImage.kf.setImage(with: URL(string: character.image))
-        print("!!!: \(String(describing: cell.photoImage))")
-        print("???: \(character.image)")
         return cell
     }
     
@@ -144,24 +143,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-//MARK: Search
+    // MARK: - Search
 
-// Работа с поиском
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text ?? "")
     }
     
-    // Фильтрация контента в соответствии с поисковым запросом
     private func filterContentForSearchText(_ searchText: String) {
-        //        tableView.reloadData()
+        
         filtredCharacters = results.filter({ (character: Character) -> Bool  in
             return character.name.lowercased().contains(searchText.lowercased())
         })
-        //        // Заполнение массива поиска объектами из основного массива c использованием Realm
-        //        filtredPlaces = results.filter("name CONTAINS[c] %@ OR gender CONTAINS[c] %@", searchText, searchText)
-        //        filtredPlaces = results.filter{ $0.name.lowercased().contains(searchText.lowercased())
-        //        }
+
         tableView.reloadData()
     }
 }

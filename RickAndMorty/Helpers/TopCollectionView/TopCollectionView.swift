@@ -18,13 +18,13 @@ class TopCollectionView: UICollectionView, UICollectionViewDelegate, UICollectio
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
+        
         delegate = self
         dataSource = self
         
         self.register(UINib(nibName:"TopCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: TopCollectionViewCell.reuseID)
 
         translatesAutoresizingMaskIntoConstraints = false
-        
         layout.minimumLineSpacing = Constans.galleryMinimumLineSpasing
         contentInset = UIEdgeInsets(top: 10, left: Constans.leftDistanceToView, bottom: 10, right: Constans.leftDistanceToView)
     }
